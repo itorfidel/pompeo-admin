@@ -27,13 +27,6 @@ export const initialUser: UserProps = {
   isAdmin: false,
 };
 
-export const initialOrderColumnWidth = {
-  buyer: 0,
-  dateOrdered: 0,
-  status: 0,
-  total: 0,
-};
-
 export const networkError = {
   type: "networkError",
   message: "Failed to connect.",

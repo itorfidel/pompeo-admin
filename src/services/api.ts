@@ -9,7 +9,8 @@ import {
 
 export const api = createApi({
   baseQuery: fetchBaseQuery({
-    baseUrl: import.meta.env.VITE_BASE_URL,
+    baseUrl: "http://localhost:8080/api/",
+    // baseUrl: "https://pompeo-server.onrender.com/api/",
     credentials: "include",
   }),
   refetchOnReconnect: true,
@@ -66,8 +67,10 @@ export const api = createApi({
         body,
       }),
     }),
-    getAllProducts: build.mutation<Array<ProductsProps>, void>({
-      query: () => "product",
+    getAllProducts: build.mutation<Array<ProductsProps>, string | void>({
+      query: (query: string) => ({
+        url: `product?category=${query}`,
+      }),
     }),
     getOneProduct: build.mutation<ProductsProps, string>({
       query: (id) => `product/${id}`,
@@ -85,12 +88,11 @@ export const api = createApi({
         method: "delete",
       }),
     }),
-    getAllTransactions: build.mutation<
-      Array<TransactionsProps>,
-      boolean | void
-    >({
-      query: (recent) => `transaction${recent ? "?recent=" + recent : ""}`,
-    }),
+    getAllTransactions: build.mutation<Array<TransactionsProps>, string | void>(
+      {
+        query: (recent) => `transaction${recent ? "?recent=" + recent : ""}`,
+      }
+    ),
     getOneTransaction: build.mutation<TransactionsProps, string>({
       query: (id) => `transaction/${id}`,
     }),
@@ -114,13 +116,13 @@ export const {
   useLoginMutation,
   useLogoutMutation,
   useGetKpisQuery,
+  useGetAllProductsMutation,
   useCreateUserMutation,
   useGetAllUsersMutation,
   useGetOneUserMutation,
   useUpdateUserMutation,
   useDeleteUserMutation,
   useCreateProductMutation,
-  useGetAllProductsMutation,
   useGetOneProductMutation,
   useUpdateProductMutation,
   useDeleteProductMutation,

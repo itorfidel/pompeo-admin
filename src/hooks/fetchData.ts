@@ -11,7 +11,7 @@ import { MutationTrigger } from "@reduxjs/toolkit/dist/query/react/buildHooks";
 export function useFetchDataMany<T>(
   getDataMutation: MutationTrigger<
     MutationDefinition<
-      void,
+      void | string,
       BaseQueryFn<
         string | FetchArgs,
         unknown,
@@ -24,16 +24,17 @@ export function useFetchDataMany<T>(
       "main"
     >
   >,
-  setState: React.Dispatch<React.SetStateAction<T[]>>
+  setState: React.Dispatch<React.SetStateAction<T[]>>,
+  query?: string
 ) {
   useEffect(() => {
     const fetchData = async () => {
-      const data = await getDataMutation().unwrap();
+      const data = await getDataMutation(query).unwrap();
       setState(data);
     };
 
     fetchData();
-  }, [getDataMutation, setState]);
+  }, [getDataMutation, setState, query]);
 }
 
 export function useFetchDataOne<T>(

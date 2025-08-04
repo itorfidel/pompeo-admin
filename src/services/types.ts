@@ -1,4 +1,4 @@
-export interface CartProps {
+interface CartProps {
   cartItems: [{ item: ProductsProps; count: number }];
   cartTotalQuantity: number;
   cartTotalAmount: number;
@@ -51,13 +51,13 @@ export interface TransactionsProps {
   createdAt: string;
 }
 
-export interface ExpensesByCategory {
+interface ExpensesByCategory {
   salaries: string;
   supplies: string;
   services: string;
 }
 
-export interface Month {
+interface Month {
   id: string;
   month: string;
   revenue: string;
@@ -66,7 +66,7 @@ export interface Month {
   operationalExpenses: string;
 }
 
-export interface Day {
+interface Day {
   id: string;
   date: string;
   revenue: string;

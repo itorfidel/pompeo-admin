@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useMemo } from "react";
 import DashboardCard from "../../components/styled/DashboardCard";
 import CardHeader from "./CardHeader";
 import {
@@ -36,13 +36,12 @@ import {
 import { formatCurrency, formatInteger } from "../../helpers/formats";
 import TotalRevenue from "../../components/TotalRevenue";
 import ChartContainer from "../../components/ChartContainer";
-import { initialOrderColumnWidth } from "../../initialState";
 import UsersByDevice from "../../components/UsersByDevice";
 
 const Reports = () => {
   const { data: kpiData } = useGetKpisQuery();
   const { width } = useWindowWidth();
-  const [columnWidth, setColumnWidth] = useState(initialOrderColumnWidth);
+  const columnWidth = width <= 540 ? 140 : width <= 768 ? 180 : 140;
 
   const revenue = useMemo(() => {
     return (
@@ -83,17 +82,6 @@ const Reports = () => {
       )
     );
   }, [kpiData]);
-
-  useEffect(() => {
-    Object.keys(initialOrderColumnWidth).map((value) => {
-      setColumnWidth((state) => ({
-        ...state,
-        [value]: width <= 540 ? 140 : width <= 768 ? 180 : 140,
-      }));
-    });
-  }, [width]);
-
-  console.log(columnWidth);
 
   return (
     <StyledReports>

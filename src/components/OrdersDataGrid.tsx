@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from "react";
+import { useState, useMemo } from "react";
 import {
   useDeleteTransactionMutation,
   useGetAllTransactionsMutation,
@@ -12,16 +12,10 @@ import StyledButton from "./styled/Button";
 import { Delete } from "@mui/icons-material";
 import handleDeleteData from "../helpers/deleteData";
 import { formatCurrency } from "../helpers/formats";
-
-interface ColumnWidthProps {
-  buyer: number;
-  dateOrdered: number;
-  status: number;
-  total: number;
-}
+import { useFetchDataMany } from "../hooks/fetchData";
 
 interface Props {
-  columnWidth: ColumnWidthProps;
+  columnWidth: number;
   recent?: boolean;
   showToolbar?: boolean;
   hideFooter: boolean;
@@ -38,15 +32,9 @@ const OrdersDataGrid = ({
   const [getTransactions] = useGetAllTransactionsMutation();
   const [transactions, setTransactions] = useState<TransactionsProps[]>([]);
   const [deleteTransaction] = useDeleteTransactionMutation();
+  const query = recent ? "recent" : "";
 
-  useEffect(() => {
-    const getData = async () => {
-      const transactions = await getTransactions(recent).unwrap();
-      setTransactions(transactions);
-    };
-
-    getData();
-  }, [getTransactions, recent]);
+  useFetchDataMany(getTransactions, setTransactions, query);
 
   const colors = {
     pending: {
@@ -97,17 +85,17 @@ const OrdersDataGrid = ({
     {
       field: "buyer",
       headerName: "Buyer",
-      width: columnWidth.buyer,
+      width: columnWidth,
     },
     {
       field: "createdAt",
       headerName: "Date Ordered",
-      width: columnWidth.dateOrdered,
+      width: columnWidth,
     },
     {
       field: "status",
       headerName: "Status",
-      width: columnWidth.status,
+      width: columnWidth,
       renderCell: (params) => {
         return (
           <Badge
@@ -133,7 +121,7 @@ const OrdersDataGrid = ({
     {
       field: "amount",
       headerName: "Total",
-      width: columnWidth.total,
+      width: columnWidth,
     },
     {
       field: "action",

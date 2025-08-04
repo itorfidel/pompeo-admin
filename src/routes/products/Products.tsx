@@ -13,7 +13,6 @@ import DashboardCard from "../../components/styled/DashboardCard";
 import Flex from "../../components/styled/Flex";
 import handleScrollToTop from "../../helpers/scrollToTop";
 import handleDeleteData from "../../helpers/deleteData";
-import { useFetchDataMany } from "../../hooks/fetchData";
 import useWindowWidth from "../../hooks/getWindowWidth";
 import { formatCurrency } from "../../helpers/formats";
 import ChartContainer from "../../components/ChartContainer";
@@ -30,14 +29,17 @@ import {
 } from "recharts";
 import Legend from "../global/Legend";
 import Grid from "../../components/styled/Grid";
+import { useFetchDataMany } from "../../hooks/fetchData";
 
 const Products = () => {
   const [getProducts] = useGetAllProductsMutation();
   const [products, setProducts] = useState<ProductsProps[]>([]);
   const [deleteProduct] = useDeleteProductMutation();
   const { width } = useWindowWidth();
+  const category = "All";
+  const columnWidth = width <= 540 ? 140 : width <= 768 ? 160 : 200;
 
-  useFetchDataMany(getProducts, setProducts);
+  useFetchDataMany(getProducts, setProducts, category);
 
   const rows = useMemo(() => {
     return products.map((product) => {
@@ -55,7 +57,7 @@ const Products = () => {
     {
       field: "image",
       headerName: "Image",
-      width: width <= 540 ? 100 : width <= 768 ? 120 : 150,
+      width: columnWidth,
       renderCell: (params) => {
         return (
           <img
@@ -75,22 +77,22 @@ const Products = () => {
     {
       field: "title",
       headerName: "Title",
-      width: width <= 540 ? 150 : width <= 768 ? 180 : 260,
+      width: columnWidth,
     },
     {
       field: "category",
       headerName: "Category",
-      width: width <= 540 ? 120 : width <= 768 ? 150 : 230,
+      width: columnWidth,
     },
     {
       field: "price",
       headerName: "Price",
-      width: width <= 540 ? 120 : width <= 768 ? 150 : 200,
+      width: columnWidth,
     },
     {
       field: "action",
       headerName: "Actions",
-      width: width <= 540 ? 100 : width <= 768 ? 150 : 120,
+      width: columnWidth,
       renderCell: (params) => {
         return (
           <>
@@ -184,6 +186,8 @@ const Products = () => {
       count: 4200,
     },
   ];
+
+  console.log("rows: ", rows);
 
   return (
     <>

@@ -24,6 +24,7 @@ const Users = () => {
   const [users, setUsers] = useState<UserProps[]>([]);
   const [deleteUser] = useDeleteUserMutation();
   const { width } = useWindowWidth();
+  const columnWidth = width <= 540 ? 140 : width <= 768 ? 160 : 200;
 
   useFetchDataMany(getUsers, setUsers);
 
@@ -40,7 +41,7 @@ const Users = () => {
     {
       field: "profileImage",
       headerName: "Profile Image",
-      width: width <= 540 ? 100 : 120,
+      width: columnWidth,
       renderCell: (params) => {
         return (
           <>
@@ -52,27 +53,27 @@ const Users = () => {
     {
       field: "fullName",
       headerName: "Full Name",
-      width: width <= 540 ? 160 : 200,
+      width: columnWidth,
     },
     {
       field: "username",
       headerName: "Username",
-      width: width <= 540 ? 120 : 160,
+      width: columnWidth,
     },
     {
       field: "email",
       headerName: "Email",
-      width: width <= 540 ? 170 : 200,
+      width: columnWidth,
     },
     {
       field: "isAdmin",
       headerName: "IsAdmin",
-      width: width <= 540 ? 100 : 120,
+      width: columnWidth,
     },
     {
       field: "action",
       headerName: "Actions",
-      width: width <= 540 ? 100 : 120,
+      width: columnWidth,
       renderCell: (params) => {
         return (
           <>

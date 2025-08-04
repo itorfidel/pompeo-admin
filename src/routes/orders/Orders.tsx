@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import DashboardCard from "../../components/styled/DashboardCard";
 import OrdersDataGrid from "../../components/OrdersDataGrid";
 import Flex from "../../components/styled/Flex";
@@ -6,20 +5,10 @@ import StyledButton from "../../components/styled/Button";
 import Grid from "../../components/styled/Grid";
 import TotalRevenue from "../../components/TotalRevenue";
 import useWindowWidth from "../../hooks/getWindowWidth";
-import { initialOrderColumnWidth } from "../../initialState";
 
 const Orders = () => {
   const { width } = useWindowWidth();
-  const [columnWidth, setColumnWidth] = useState(initialOrderColumnWidth);
-
-  useEffect(() => {
-    Object.keys(initialOrderColumnWidth).map((value) => {
-      setColumnWidth((state) => ({
-        ...state,
-        [value]: width <= 540 ? 140 : width <= 768 ? 160 : 200,
-      }));
-    });
-  }, [width]);
+  const columnWidth = width <= 540 ? 140 : width <= 768 ? 160 : 200;
 
   return (
     <>
