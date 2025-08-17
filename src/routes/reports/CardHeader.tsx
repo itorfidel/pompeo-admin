@@ -1,6 +1,7 @@
 import React from "react";
 import Flex from "../../components/styled/Flex";
 import Badge from "../../components/styled/Badge";
+import StyledCardHeader from "../../components/styled/CardHeader";
 
 interface Props {
   titleSm: string;
@@ -9,7 +10,7 @@ interface Props {
   badgeBgColor: string;
   badgeColor: string;
   badgeTxt: string;
-  BadgeSvg?: React.ReactElement;
+  badgeSvg?: React.ReactElement;
   style?: React.CSSProperties;
 }
 
@@ -20,22 +21,24 @@ const CardHeader = ({
   badgeBgColor,
   badgeColor,
   badgeTxt,
-  BadgeSvg,
+  badgeSvg,
   style,
 }: Props) => {
   return (
-    <Flex $justify="space-between" style={{ ...style }}>
-      <div>
-        <h4 style={{ marginBottom: "1em" }}>{titleSm}</h4>
-        <Flex>
-          <h1 style={{ marginRight: "0.25em" }}>{titleLg}</h1>
-          <Badge $bgColor={badgeBgColor} $color={badgeColor}>
-            {badgeTxt} {BadgeSvg}
-          </Badge>
-        </Flex>
-      </div>
-      <div>{right}</div>
-    </Flex>
+    <StyledCardHeader>
+      <Flex $justify="space-between" style={{ ...style }}>
+        <div>
+          <h4 className="titleSm">{titleSm}</h4>
+          <Flex>
+            <h1 className="titleLg">{titleLg}</h1>
+            <Badge $bgColor={badgeBgColor} $color={badgeColor}>
+              {badgeTxt} {badgeSvg}
+            </Badge>
+          </Flex>
+        </div>
+        <div>{right}</div>
+      </Flex>
+    </StyledCardHeader>
   );
 };
 

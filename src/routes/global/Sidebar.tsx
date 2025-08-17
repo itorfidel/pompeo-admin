@@ -66,11 +66,7 @@ const Sidebar = () => {
           <Logo />
           <Clear className="mobileMenuExit" onClick={handleCloseMenu} />
         </Flex>
-        <ul
-          className="sidebarList"
-          style={{ marginTop: "5em" }}
-          onClick={handleCloseSidebar}
-        >
+        <ul className="sidebarList top" onClick={handleCloseSidebar}>
           <h4>Dashboard</h4>
           <SidebarLinks to="/">
             <Assessment />
@@ -101,11 +97,7 @@ const Sidebar = () => {
             </Flex>
           </SidebarLinks>
         </ul>
-        <ul
-          className="sidebarList"
-          style={{ marginTop: "3em" }}
-          onClick={handleCloseSidebar}
-        >
+        <ul className="sidebarList" onClick={handleCloseSidebar}>
           <h4>Utilities</h4>
           <SidebarLinks to="/analytics">
             <TrendingUp />

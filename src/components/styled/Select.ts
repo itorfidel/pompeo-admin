@@ -8,7 +8,7 @@ const StyledSelect = styled.div`
   background-color: #080f25;
   color: #c7d3ff;
   cursor: pointer;
-  z-index: 100;
+  z-index: 1;
 
   .dropdown {
     position: absolute;
@@ -51,7 +51,7 @@ const StyledSelect = styled.div`
     font-size: 1.35rem;
 
     .default {
-      z-index: 100;
+      z-index: 1;
       background-color: inherit;
       border-radius: 0.4em;
     }

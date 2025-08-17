@@ -9,8 +9,8 @@ import {
 
 export const api = createApi({
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:8080/api/",
-    // baseUrl: "https://pompeo-server.onrender.com/api/",
+    // baseUrl: "http://localhost:8080/api/",
+    baseUrl: "https://pompeo-server.onrender.com/api/",
     credentials: "include",
   }),
   refetchOnReconnect: true,

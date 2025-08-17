@@ -33,18 +33,18 @@ const StyledChartContainer = styled.div`
     }
 
     &.medium {
-      height: 21em;
+      height: 22em;
 
       @media ${breakpoints.md} {
         height: 31em;
       }
 
       @media ${breakpoints.sm} {
-        height: 27em;
+        height: 22em;
       }
 
       @media ${breakpoints.xs} {
-        height: 22em;
+        height: 18em;
       }
     }
 

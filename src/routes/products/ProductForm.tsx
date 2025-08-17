@@ -23,6 +23,7 @@ import {
 import useWindowWidth from "../../hooks/getWindowWidth";
 import { initialProduct } from "../../initialState";
 import { handleEventChange, handleInputFile } from "../../helpers/handleEvents";
+import StyledProductForm from "../../components/styled/ProductForm";
 
 interface Props {
   product?: ProductsProps;
@@ -100,113 +101,95 @@ const ProductForm = ({
   };
 
   return (
-    <DashboardCard style={{ margin: "3em auto 5em" }}>
-      <form onSubmit={handleUpdate}>
-        {mutationSuccess ? (
-          <Alert
-            severity="success"
-            style={{ fontSize: "1.3rem", marginBottom: "1em" }}
-          >
-            Success<strong>:</strong> Profile{" "}
-            {product?.title ? "Updated" : "Created"} Successfully!
-          </Alert>
-        ) : mutationError ? (
-          <Alert
-            severity="error"
-            style={{ fontSize: "1.3rem", marginBottom: "1em" }}
-          >
-            Error<strong>:</strong> Profile not{" "}
-            {product?.title ? "Updated" : "Created"}!
-          </Alert>
-        ) : (
-          ""
-        )}
-        <div>
-          <ProductImage
-            src={product?.image}
-            imageFileUrl={imageFileUrl}
-            imageFile={imageFile}
-            progress={uploadProgress}
-            onChange={(e) => handleInputFile(e, setImageFile, setImageFileUrl)}
-          />
-          <Grid
-            $gtCols={width <= 540 ? "1fr" : "repeat(2, 1fr)"}
-            $gap="2em"
-            style={{ width: "100%", marginBlock: "4em" }}
-          >
-            <Input
-              type="text"
-              svg={<Title />}
-              label="Title"
-              id="title"
-              placeholder="Enter title"
-              defaultValue={product?.title}
-              onChange={(e) => {
-                handleEventChange(e, setBody);
-              }}
+    <StyledProductForm>
+      <DashboardCard className="card">
+        <form onSubmit={handleUpdate}>
+          {mutationSuccess ? (
+            <Alert severity="success" className="alert">
+              Success<strong>:</strong> Profile{" "}
+              {product?.title ? "Updated" : "Created"} Successfully!
+            </Alert>
+          ) : mutationError ? (
+            <Alert severity="error" className="alert">
+              Error<strong>:</strong> Profile not{" "}
+              {product?.title ? "Updated" : "Created"}!
+            </Alert>
+          ) : (
+            ""
+          )}
+          <div>
+            <ProductImage
+              src={product?.image}
+              imageFileUrl={imageFileUrl}
+              imageFile={imageFile}
+              progress={uploadProgress}
+              onChange={(e) =>
+                handleInputFile(e, setImageFile, setImageFileUrl)
+              }
             />
-            <Input
-              type="text"
-              svg={<AttachMoney />}
-              label="Price"
-              id="price"
-              placeholder="Enter price"
-              defaultValue={product?.price}
-              onChange={(e) => {
-                handleEventChange(e, setBody);
-              }}
-            />
-            <Input
-              type="text"
-              svg={<LocalCafeOutlined />}
-              label="Category"
-              id="category"
-              placeholder="Enter category"
-              defaultValue={product?.category}
-              onChange={(e) => {
-                handleEventChange(e, setBody);
-              }}
-            />
-          </Grid>
-        </div>
+            <Grid $gap="2em" className="formGrid">
+              <Input
+                type="text"
+                svg={<Title />}
+                label="Title"
+                id="title"
+                placeholder="Enter title"
+                defaultValue={product?.title}
+                onChange={(e) => {
+                  handleEventChange(e, setBody);
+                }}
+              />
+              <Input
+                type="text"
+                svg={<AttachMoney />}
+                label="Price"
+                id="price"
+                placeholder="Enter price"
+                defaultValue={product?.price}
+                onChange={(e) => {
+                  handleEventChange(e, setBody);
+                }}
+              />
+              <Input
+                type="text"
+                svg={<LocalCafeOutlined />}
+                label="Category"
+                id="category"
+                placeholder="Enter category"
+                defaultValue={product?.category}
+                onChange={(e) => {
+                  handleEventChange(e, setBody);
+                }}
+              />
+            </Grid>
+          </div>
 
-        <div style={{ marginBottom: "4em" }}>
-          <label
-            htmlFor="desc"
-            style={{
-              marginBottom: "0.8em",
-              fontSize: "1.2rem",
-              fontWeight: "500",
-              display: "inline-block",
-            }}
+          <div className="textarea">
+            <label htmlFor="desc">Description</label>
+            <StyledTextarea
+              name="desc"
+              id="desc"
+              placeholder="Enter description"
+              defaultValue={product?.desc}
+              onChange={(e) => {
+                setBody((state) => ({
+                  ...state,
+                  desc: e.target.value,
+                }));
+              }}
+            ></StyledTextarea>
+          </div>
+          <StyledButton
+            type="submit"
+            name="submit"
+            className={isUpdate ? "updateBtn" : ""}
+            disabled={isUpdate ? false : true}
           >
-            Description
-          </label>
-          <StyledTextarea
-            name="desc"
-            id="desc"
-            placeholder="Enter description"
-            defaultValue={product?.desc}
-            onChange={(e) => {
-              setBody((state) => ({
-                ...state,
-                desc: e.target.value,
-              }));
-            }}
-          ></StyledTextarea>
-        </div>
-        <StyledButton
-          type="submit"
-          name="submit"
-          style={{
-            color: isUpdate ? "inherit" : "#656565",
-          }}
-          disabled={isUpdate ? false : true}
-        >
-          {!product?.title ? "Create" : "Update"}
-        </StyledButton>
-      </form>
-    </DashboardCard>
+            {!product?.title ? "Create" : "Update"}
+          </StyledButton>
+        </form>
+      </DashboardCard>
+    </StyledProductForm>
   );
 };
 

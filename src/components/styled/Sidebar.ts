@@ -57,6 +57,10 @@ const StyledSidebar = styled.div`
   }
 
   .sidebarList {
+    &.top {
+      margin-block: 5em 3em;
+    }
+
     h4 {
       color: #ffffff;
     }

@@ -1,4 +1,3 @@
-import React from "react";
 import StyledFooter from "../../components/styled/Footer";
 import { Link } from "react-router-dom";
 

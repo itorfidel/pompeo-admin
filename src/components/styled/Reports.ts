@@ -1,9 +1,44 @@
 import { styled } from "styled-components";
 import { breakpoints } from "./breakpoints";
+import { topGrid } from "./Helper";
 
 const StyledReports = styled.div`
   section {
     margin-bottom: 5em;
+  }
+
+  .cardHeaderGrid {
+    grid-template-columns: repeat(4, 1fr);
+    margin-top: 3em;
+
+    @media ${breakpoints.lg} {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media ${breakpoints.md} {
+      grid-template-columns: 1fr;
+    }
+
+    &Icon {
+      font-size: 2.5rem;
+    }
+  }
+
+  .chartsCard {
+    margin-top: 1.5em;
+    padding: 3em;
+
+    @media ${breakpoints.lg} {
+      padding: 2em;
+    }
+  }
+
+  .legendStyles {
+    gap: 2em;
+  }
+
+  .orderHistoryGrid {
+    ${topGrid}
   }
 
   .chartLgContainer {

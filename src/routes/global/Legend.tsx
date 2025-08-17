@@ -1,5 +1,6 @@
 import React from "react";
 import Flex from "../../components/styled/Flex";
+import StyledLegend from "../../components/styled/Legend";
 
 interface Props {
   style?: React.CSSProperties;
@@ -10,25 +11,20 @@ interface Props {
 
 const Legend = ({ style, dotStyle, color, title }: Props) => {
   return (
-    <Flex
+    <StyledLegend
       style={{
-        gap: "0.7em",
-        fontSize: "1.25rem",
         ...style,
       }}
     >
       <span
+        className="dot"
         style={{
           backgroundColor: color,
-          width: "0.8em",
-          height: "0.8em",
-          borderRadius: "50%",
-          display: "inline-block",
           ...dotStyle,
         }}
       ></span>
-      <span style={{ color: color }}>{title}</span>
-    </Flex>
+      <span>{title}</span>
+    </StyledLegend>
   );
 };
 

@@ -1,3 +1,4 @@
+import { ResponsiveContainer } from "recharts";
 import CardHeader from "../routes/reports/CardHeader";
 import StyledChartContainer from "./styled/ChartContainer";
 import React from "react";
@@ -39,7 +40,7 @@ const ChartContainer = ({
         badgeBgColor={badgeBgColor}
         badgeColor={badgeColor}
         badgeTxt={badgeTxt}
-        BadgeSvg={badgeSvg}
+        badgeSvg={badgeSvg}
         right={right}
         style={styleHeader}
       />
@@ -54,7 +55,9 @@ const ChartContainer = ({
             : ""
         }`}
       >
-        {children}
+        <ResponsiveContainer width="100%" height="100%">
+          {children}
+        </ResponsiveContainer>
       </div>
     </StyledChartContainer>
   );

@@ -30,6 +30,8 @@ import {
 import Legend from "../global/Legend";
 import Grid from "../../components/styled/Grid";
 import { useFetchDataMany } from "../../hooks/fetchData";
+import TooltipStyles from "../../components/styled/TooltipStyles";
+import StyledProducts from "../../components/styled/Products";
 
 const Products = () => {
   const [getProducts] = useGetAllProductsMutation();
@@ -187,10 +189,8 @@ const Products = () => {
     },
   ];
 
-  console.log("rows: ", rows);
-
   return (
-    <>
+    <StyledProducts>
       <Flex $justify="space-between">
         <h1>Products Overview</h1>
         <Link to="/products/create-product">
@@ -198,23 +198,10 @@ const Products = () => {
         </Link>
       </Flex>
 
-      <Grid
-        $gtCols={width <= 768 ? "1fr" : "repeat(2, 1fr)"}
-        $gtRows={width <= 768 ? "repeat(2, 1fr)" : "1fr"}
-        $gap="2.5em"
-        style={{ marginTop: "3em", overflow: "hidden" }}
-      >
+      <Grid $gap="2.5em" className="productsGrid">
         <DashboardCard>
           <Flex $direction="column" style={{ height: "100%" }}>
-            <h3
-              style={{
-                alignSelf: "flex-start",
-                color: "#ffffff",
-                marginBottom: "0.25em",
-              }}
-            >
-              Top selling by category
-            </h3>
+            <h4 style={{ alignSelf: "flex-start" }}>Top selling categories</h4>
             <ResponsiveContainer width="100%" height="100%">
               <RadialBarChart
                 innerRadius="55%"
@@ -230,12 +217,7 @@ const Products = () => {
                 />
               </RadialBarChart>
             </ResponsiveContainer>
-            <Flex
-              $justify="center"
-              style={{
-                gap: "2em",
-              }}
-            >
+            <Flex $justify="center" className="legendContainer">
               <Legend color="#40c1b8" title="Vases" />
               <Legend color="#469be0" title="Mugs" />
               <Legend color="#5973dd" title="Plates" />
@@ -244,73 +226,55 @@ const Products = () => {
           </Flex>
         </DashboardCard>
         <DashboardCard>
-          <h3 style={{ color: "#ffffff", marginBottom: "0.25em" }}>
-            Top selling by individual item
-          </h3>
           <ChartContainer
-            titleLg={`400K`}
+            titleSm="Top selling Products"
+            titleLg="400K"
             badgeBgColor="#05c16833"
             badgeColor="#14ca74"
             badgeTxt="17.3%"
             badgeSvg={<TrendingUp />}
             size="medium"
             right={
-              <Flex
-                style={{
-                  gap: "2em",
-                }}
-              >
+              <Flex className="legendContainer">
                 <Legend color="#469be0" title="Item Count" />
                 <Legend color="#40c1b8" title="Revenue" />
               </Flex>
             }
-            styleMain={{ justifyContent: "unset", gap: "2em" }}
+            styleMain={{
+              justifyContent: "space-around",
+              gap: "2em",
+            }}
           >
-            <ResponsiveContainer width="100%" height="100%">
-              <BarChart
-                data={barData}
-                barSize={width <= 540 ? 10 : width <= 768 ? 15 : 10}
-              >
-                <CartesianGrid
-                  vertical={false}
-                  strokeDasharray="3 3"
-                  stroke="#848dac65"
-                />
-                <XAxis
-                  stroke="#aeb9e1dc"
-                  tickLine={false}
-                  axisLine={false}
-                  dataKey="name"
-                />
-                <YAxis
-                  stroke="#aeb9e1dc"
-                  tickLine={false}
-                  axisLine={false}
-                  width={0}
-                />
-                <Tooltip
-                  contentStyle={{
-                    backgroundColor: "#0e193fbe",
-                    border: "2px solid #1c3381be",
-                    backdropFilter: "blur(4px)",
-                    borderRadius: "0.8em",
-                    transform: "scale(85%)",
-                  }}
-                />
-                <Bar dataKey="count" fill="#469be0" />
-                <Bar dataKey="revenue" fill="#40c1b8" />
-              </BarChart>
-            </ResponsiveContainer>
+            <BarChart
+              data={barData}
+              barSize={width <= 540 ? 10 : width <= 768 ? 15 : 10}
+              margin={{ bottom: -4 }}
+            >
+              <CartesianGrid
+                vertical={false}
+                strokeDasharray="3 3"
+                stroke="#848daca7"
+              />
+              <XAxis
+                stroke="#aeb9e1dc"
+                tickLine={false}
+                axisLine={false}
+                dataKey="name"
+              />
+              <YAxis
+                stroke="#aeb9e1dc"
+                tickLine={false}
+                axisLine={false}
+                width={0}
+              />
+              <Tooltip contentStyle={TooltipStyles} />
+              <Bar dataKey="count" fill="#469be0" />
+              <Bar dataKey="revenue" fill="#40c1b8" />
+            </BarChart>
           </ChartContainer>
         </DashboardCard>
       </Grid>
-      <DashboardCard
-        style={{
-          marginBlock: "2.5em 5em",
-          width: width < 1280 ? "95vw" : "100%",
-          overflowX: "auto",
-        }}
-      >
+      <DashboardCard className="dataGridCard">
         <TableDataGrid
           rows={rows}
           columns={columns}
@@ -319,7 +283,7 @@ const Products = () => {
           hideFooter={false}
         />
       </DashboardCard>
-    </>
+    </StyledProducts>
   );
 };
 

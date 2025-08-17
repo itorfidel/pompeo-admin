@@ -16,6 +16,7 @@ import {
 import { triggerError, triggerErrorMessage } from "../../helpers/errorTriggers";
 import { networkError } from "../../initialState";
 import Flex from "../../components/styled/Flex";
+import StyledLogin from "../../components/styled/Login";
 
 const initialBody: LoginProps = {
   email: "",
@@ -107,10 +108,10 @@ const Login = () => {
   };
 
   return (
-    <Flex $direction="column" $justify="center" style={{ height: "80vh" }}>
-      <DashboardCard style={{ width: width <= 400 ? "100%" : "35em" }}>
+    <StyledLogin>
+      <DashboardCard className="card">
         <h1>Login</h1>
-        <form style={{ marginTop: "4em" }} onSubmit={handleLogin}>
+        <form className="form" onSubmit={handleLogin}>
           <Input
             type="text"
             placeholder="Enter your email"
@@ -121,9 +122,9 @@ const Login = () => {
             clientErrorMessage={clientErrorMessage.email}
             isServerError={isServerError.email}
             serverErrorMessage={serverErrorMsg.email}
-            style={{ marginBottom: "2.5em" }}
             onBlurCapture={(e) => handleEventBlurCapture(e, setIsClientError)}
             onChange={(e) => handleEventChange(e, setBody)}
+            style={{ marginBottom: "2.5em" }}
           />
           <Input
             type="password"
@@ -138,21 +139,12 @@ const Login = () => {
             onBlurCapture={(e) => handleEventBlurCapture(e, setIsClientError)}
             onChange={(e) => handleEventChange(e, setBody)}
           />
-          <StyledButton
-            type="submit"
-            name="submit"
-            style={{
-              width: "100%",
-              marginTop: "5em",
-              padding: "1em 0",
-              fontSize: "1.4rem",
-            }}
-          >
+          <StyledButton type="submit" name="submit" className="submitBtn">
             Login
           </StyledButton>
         </form>
       </DashboardCard>
-    </Flex>
+    </StyledLogin>
   );
 };
 

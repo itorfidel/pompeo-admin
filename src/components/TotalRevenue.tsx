@@ -1,18 +1,12 @@
 import { TrendingUp } from "@mui/icons-material";
-import {
-  Bar,
-  BarChart,
-  CartesianGrid,
-  ResponsiveContainer,
-  Tooltip,
-  XAxis,
-} from "recharts";
+import { Bar, BarChart, CartesianGrid, Tooltip, XAxis } from "recharts";
 import useWindowWidth from "../hooks/getWindowWidth";
 import { formatCurrency, formatInteger } from "../helpers/formats";
 import { useGetKpisQuery } from "../services/api";
 import { useMemo } from "react";
 import { getTotalKpiFigure } from "../helpers/getKpiFigures";
 import ChartContainer from "./ChartContainer";
+import TooltipStyles from "./styled/TooltipStyles";
 
 interface Props {
   className?: string;
@@ -46,36 +40,28 @@ const TotalRevenue = ({ className, size }: Props) => {
       badgeSvg={<TrendingUp />}
       size={size}
     >
-      <ResponsiveContainer width="100%" height="100%">
-        <BarChart
-          data={revenue}
-          barSize={width <= 540 ? 10 : width <= 768 ? 15 : 10}
-        >
-          <CartesianGrid
-            vertical={false}
-            strokeDasharray="3 3"
-            stroke="#848daca7"
-          />
-          <XAxis
-            dataKey="name"
-            tickLine={false}
-            axisLine={false}
-            style={{ fontSize: "1.1rem" }}
-            stroke="#aeb9e1dc"
-          />
-          <Tooltip
-            contentStyle={{
-              backgroundColor: "#0e193fbe",
-              border: "2px solid #1c3381be",
-              backdropFilter: "blur(4px)",
-              borderRadius: "0.8em",
-              transform: "scale(85%)",
-            }}
-            formatter={(v) => formatCurrency(v.toString())}
-          />
-          <Bar dataKey="revenue" fill="#469be0" opacity={0.8} />
-        </BarChart>
-      </ResponsiveContainer>
+      <BarChart
+        data={revenue}
+        barSize={width <= 540 ? 9 : width <= 768 ? 14 : 9}
+      >
+        <CartesianGrid
+          vertical={false}
+          strokeDasharray="3 3"
+          stroke="#848dac65"
+        />
+        <XAxis
+          dataKey="name"
+          tickLine={false}
+          axisLine={false}
+          style={{ fontSize: "1.1rem" }}
+          stroke="#aeb9e1dc"
+        />
+        <Tooltip
+          contentStyle={TooltipStyles}
+          formatter={(v) => formatCurrency(v.toString())}
+        />
+        <Bar dataKey="revenue" fill="#469be0" opacity={0.8} />
+      </BarChart>
     </ChartContainer>
   );
 };
