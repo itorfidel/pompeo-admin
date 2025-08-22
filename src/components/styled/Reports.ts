@@ -18,10 +18,10 @@ const StyledReports = styled.div`
     @media ${breakpoints.md} {
       grid-template-columns: 1fr;
     }
+  }
 
-    &Icon {
-      font-size: 2.5rem;
-    }
+  .cardHeaderIcon {
+    font-size: 2.5rem;
   }
 
   .chartsCard {
@@ -35,10 +35,6 @@ const StyledReports = styled.div`
 
   .legendStyles {
     gap: 2em;
-  }
-
-  .orderHistoryGrid {
-    ${topGrid}
   }
 
   .chartLgContainer {
@@ -93,6 +89,20 @@ const StyledReports = styled.div`
       padding-top: 1.5em;
       @extend .responsive;
     }
+  }
+
+  .orderHistoryGrid {
+    ${topGrid}
+  }
+
+  .dataGridCard {
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  .dataGridTitle {
+    margin: 0 0 1em 0.5em;
+    color: #ffffff;
   }
 `;
 

@@ -298,10 +298,8 @@ const Reports = () => {
           </Flex>
           <Grid $gap="1.5em" className="orderHistoryGrid">
             <UsersByDevice />
-            <DashboardCard style={{ width: "100%", overflowX: "auto" }}>
-              <h3 style={{ margin: "0 0 1em 0.5em", color: "#ffffff" }}>
-                Most Recent
-              </h3>
+            <DashboardCard className="dataGridCard">
+              <h3 className="dataGridTitle">Most Recent</h3>
               <OrdersDataGrid
                 columnWidth={columnWidth}
                 recent={true}

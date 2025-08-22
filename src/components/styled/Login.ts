@@ -9,7 +9,7 @@ const StyledLogin = styled.div`
   flex-direction: column;
 
   .card {
-    width: "35em";
+    width: 37em;
 
     @media ${breakpoints.xs} {
       width: 100%;

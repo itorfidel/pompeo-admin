@@ -26,7 +26,7 @@ const CardHeader = ({
 }: Props) => {
   return (
     <StyledCardHeader>
-      <Flex $justify="space-between" style={{ ...style }}>
+      <Flex $justify="space-between" style={style}>
         <div>
           <h4 className="titleSm">{titleSm}</h4>
           <Flex>

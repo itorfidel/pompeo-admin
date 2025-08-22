@@ -7,7 +7,7 @@ const Footer = () => {
       <p>
         Copyright © Potterland 2023. All rights reserved. Website developed by{" "}
         <Link
-          to="https://github.com/ItorFidel?tab=repositories"
+          to="https://github.com/itorfidel?tab=repositories"
           target="_blank"
         >
           Itor Fidelis.

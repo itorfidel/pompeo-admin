@@ -20,7 +20,6 @@ import {
   FetchBaseQueryMeta,
   MutationDefinition,
 } from "@reduxjs/toolkit/dist/query";
-import useWindowWidth from "../../hooks/getWindowWidth";
 import { initialProduct } from "../../initialState";
 import { handleEventChange, handleInputFile } from "../../helpers/handleEvents";
 import StyledProductForm from "../../components/styled/ProductForm";
@@ -58,7 +57,6 @@ const ProductForm = ({
   const [uploadProgress, setUploadProgress] = useState(0);
   const [body, setBody] = useState<ProductsProps>(product || initialProduct);
   const [isUpdate, setIsUpdate] = useState(true);
-  const { width } = useWindowWidth();
 
   const app = initializeApp(firebaseConfig);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
