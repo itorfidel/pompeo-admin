@@ -5,7 +5,9 @@ export function triggerError<T>(
   options?: object
 ) {
   const newIsError = { ...isError };
-  Object.keys(isError).map((key) => (newIsError[key] = value));
+  Object.keys(isError as object).map(
+    (key) => ((newIsError as Record<string, unknown>)[key] = value)
+  );
   setIsError(newIsError);
 
   if (options) {
@@ -20,7 +22,9 @@ export function triggerErrorMessage<T>(
   options?: object
 ) {
   const newMessage = { ...initialMessage };
-  Object.keys(initialMessage).map((key) => (newMessage[key] = currentMessage));
+  Object.keys(initialMessage as object).map(
+    (key) => ((newMessage as Record<string, unknown>)[key] = currentMessage)
+  );
   setCurrentMessage(newMessage);
 
   if (options) {
