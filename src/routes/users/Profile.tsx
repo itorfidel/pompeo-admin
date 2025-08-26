@@ -7,12 +7,13 @@ import {
 import { UserProps } from "../../services/types";
 import { useFetchDataOne } from "../../hooks/fetchData";
 import UserForm from "./UserForm";
+import { initialUser } from "../../initialState";
 
 const Profile = () => {
   const id: string = useLocation().state;
   const [getUser] = useGetOneUserMutation();
   const [updateUser, { isSuccess, isError }] = useUpdateUserMutation();
-  const [profileUser, setProfileUser] = useState<UserProps>({});
+  const [profileUser, setProfileUser] = useState<UserProps>(initialUser);
 
   useFetchDataOne(getUser, setProfileUser, id);
 

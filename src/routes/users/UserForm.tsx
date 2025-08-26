@@ -66,8 +66,9 @@ const UserForm = ({
   const { width } = useWindowWidth();
 
   const app = initializeApp(firebaseConfig);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
   const db = getFirestore(app);
+  console.log(db);
 
   useUploadImage(imageFile, setImageUploadUrl, setUploadProgress);
 

@@ -9,12 +9,13 @@ import {
 import { ProductsProps } from "../../services/types";
 import { useFetchDataOne } from "../../hooks/fetchData";
 import ProductForm from "./ProductForm";
+import { initialProduct } from "../../initialState";
 
 const UpdateProduct = () => {
   const id: string = useLocation().state;
   const [getProduct] = useGetOneProductMutation();
   const [updateProduct, { isSuccess, isError }] = useUpdateProductMutation();
-  const [product, setproduct] = useState<ProductsProps>({});
+  const [product, setproduct] = useState<ProductsProps>(initialProduct);
 
   useFetchDataOne(getProduct, setproduct, id);
 

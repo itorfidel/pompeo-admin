@@ -1,5 +1,4 @@
 import React from "react";
-import Flex from "../../components/styled/Flex";
 import StyledLegend from "../../components/styled/Legend";
 
 interface Props {

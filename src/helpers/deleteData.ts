@@ -28,7 +28,9 @@ function handleDeleteData<T>(
 ) {
   if (id) {
     deleteData(id);
-    setState((state) => state.filter((item) => item._id !== id));
+    setState((state) =>
+      state.filter((item) => (item as Record<string, unknown>)._id !== id)
+    );
   }
 }
 

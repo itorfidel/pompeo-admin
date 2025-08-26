@@ -8,14 +8,12 @@ import { useAppDispatch } from "../../app/hooks";
 import { setUser } from "../../features/userSlice";
 import handleScrollToTop from "../../helpers/scrollToTop";
 import StyledButton from "../../components/styled/Button";
-import useWindowWidth from "../../hooks/getWindowWidth";
 import {
   handleEventBlurCapture,
   handleEventChange,
 } from "../../helpers/handleEvents";
 import { triggerError, triggerErrorMessage } from "../../helpers/errorTriggers";
 import { networkError } from "../../initialState";
-import Flex from "../../components/styled/Flex";
 import StyledLogin from "../../components/styled/Login";
 
 const initialBody: LoginProps = {
@@ -45,7 +43,6 @@ const Login = () => {
   const [isServerError, setIsServerError] = useState(initialIsError);
   const [serverErrorMsg, setServerErrorMsg] = useState(initialServerErrorMsg);
   const dispatch = useAppDispatch();
-  const { width } = useWindowWidth();
 
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

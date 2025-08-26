@@ -1,4 +1,4 @@
-export function triggerError(
+export function triggerError<T>(
   isError: T,
   value: boolean,
   setIsError: React.Dispatch<React.SetStateAction<T>>,
@@ -13,7 +13,7 @@ export function triggerError(
   }
 }
 
-export function triggerErrorMessage(
+export function triggerErrorMessage<T>(
   initialMessage: T,
   currentMessage: string,
   setCurrentMessage: React.Dispatch<React.SetStateAction<T>>,

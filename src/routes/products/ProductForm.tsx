@@ -59,8 +59,9 @@ const ProductForm = ({
   const [isUpdate, setIsUpdate] = useState(true);
 
   const app = initializeApp(firebaseConfig);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const db = getFirestore(app);
+
+  console.log(db);
 
   useUploadImage(imageFile, setImageUploadUrl, setUploadProgress);
 
